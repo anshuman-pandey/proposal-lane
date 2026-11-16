@@ -1,27 +1,63 @@
 # Proposal Lane
 
-**An open-source alternative for Better Proposals workflows, in preparation.**
+### Turn scope into a proposal clients can keep.
 
-Local six-language browser preview with a proposal editor, immutable client snapshots and browser Print / Save PDF. Native-speaker review and public HTTPS acceptance remain; no public release or deployment.
+Write a proposal, price the work, and share an immutable client snapshot. A focused, self-hosted alternative to Better Proposals for estimates and printable proposals.
 
-![Actual proposal editor and estimate preview](docs/assets/workspace.png)
+[![CI](https://github.com/anshuman-pandey/proposal-lane/actions/workflows/check.yml/badge.svg)](https://github.com/anshuman-pandey/proposal-lane/actions/workflows/check.yml) · [MIT license](LICENSE) · Python + SQLite · Self-hosted
 
-Implemented: line items with fractional quantities, explicit currency, fixed discount, tax percentage, exact cents, optimistic revision checks, immutable shared snapshots and revocable hashed share credentials. Run `python3 -m unittest discover -s tests -v` with Python 3.12; install `requirements.txt` first to include the HTTP tests.
+![Proposal Lane: actual application workspace](docs/assets/workspace.png)
 
-Amounts accept plain decimal strings. Each line is rounded half-up to cents; the fixed discount is subtracted from the rounded subtotal; tax is rounded half-up on the discounted subtotal. Only USD, EUR, GBP, CAD and AUD are supported initially, all at two decimal places. Currency conversion and jurisdiction-specific tax compliance are not provided. Limits: 100 line items, quantity up to 1 million, unit price up to 1 million, subtotal up to 1 billion currency units. Zero-price items are allowed; zero quantity is not.
+**Public source preview.** The local workflow and container recovery have been tested. There is no hosted demo or tagged product release yet; public HTTPS acceptance remains pending.
 
-Owner library methods require authentication; the included `server.py` supplies that boundary. Share keys confer read access; they do not establish identity, consent, signature or payment. Revocation cannot erase copies already downloaded. The development API binds to localhost only.
+## How it works
 
-English, German, Spanish, Japanese, Simplified Chinese and Traditional Chinese now pass browser language checks. Local persistent deployment and backup recovery pass.
+1. Enter the scope and line items, including fractional quantities, a fixed discount and tax.
+2. Save the draft and create a private client snapshot. Later draft edits leave shared snapshots unchanged.
+3. Use browser Print / Save PDF for a portable copy, or revoke future access to a snapshot.
 
-[Scope and primary references](docs/SCOPE.md) · [MIT license](LICENSE)
+## Try it locally
 
-[Run the authenticated local API](docs/API.md). Twenty tests cover calculations, immutable snapshots, access boundaries, stale revisions, revocation and request limits.
+Requires Git, Python 3 and Docker with the Compose plugin.
 
-Start the local server using [API instructions](docs/API.md), then open http://127.0.0.1:8095. Save a proposal to preview its calculated totals. Create a client snapshot and copy its private link. Links pointing to localhost only work on the same computer; remote sharing requires an authorized HTTPS deployment. Use **Print / Save PDF** in the browser; turn off browser-added headers/footers when exporting. This is browser printing, not a server-generated PDF download.
+```sh
+git clone https://github.com/anshuman-pandey/proposal-lane.git
+cd proposal-lane
+python3 scripts/setup.py
+docker compose up --build -d
+```
 
-Chromium acceptance covers exact totals, literal rendering of HTML-like text, immutable snapshots after edits, revocation, narrow layout and a one-page PDF with the expected proposal text/totals and without editor controls. A 28-page Chromium stress fixture also passes all content/total/page-bound checks; other browser print engines remain unverified. See [print acceptance](docs/PRINT.md).
+Open **http://127.0.0.1:8095**. Read the generated private `.env` file locally and use its `PROPOSAL_OWNER_KEY` value to unlock the owner workspace. Setup retains any existing `.env`; do not commit or share this file.
 
-[Persistent hosting and backup recovery](docs/DEPLOYMENT.md) provides private setup, non-root Docker and a localhost Compose service. Local container acceptance verifies draft revisions, immutable snapshots and revoked links across restart and clean-volume restoration, plus new edits and shares after recovery.
+The app binds to localhost and stores data in a persistent Docker volume. Links pointing to localhost work only on your computer. For remote sharing, follow the [HTTPS deployment and backup guide](docs/DEPLOYMENT.md). Avoid `docker compose down -v` unless you intend to delete the stored data.
 
-Language switching preserves drafts, proposal content and exact prices. Regional preferences, saved selection, blocked browser storage, translated errors and mobile layout are tested. Native-speaker review and public HTTPS remain pending. [Runnable preview and publication handoff](HANDOFF.md).
+## Included
+
+- Exact-cent calculations: round each line half-up, subtract the fixed discount, then round tax half-up.
+- USD, EUR, GBP, CAD and AUD with two decimal places; no currency conversion.
+- Revision checks protect drafts against overwriting a newer edit.
+
+**Interface languages:** English, German, Spanish, Japanese, Simplified Chinese and Traditional Chinese. Native-speaker review is still pending. User-authored content is never translated.
+
+## Know the boundaries
+
+Up to 100 line items; quantities and unit prices are each limited to one million, with a one-billion subtotal limit. Printing uses the browser, not a server-side PDF generator. Chromium print output is tested; other print engines remain unverified. No electronic signatures, payments, identity verification or tax-compliance service. Revoking a link cannot recall a saved PDF.
+
+Private links and reviewer keys grant access to whoever holds them. Keep the owner key separate from participant credentials. This project covers the workflow above, not the full feature set of its commercial reference.
+
+## Development and checks
+
+```sh
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+python -m unittest discover -s tests -v
+```
+
+The published baseline passed **21 Python tests**. Recorded browser acceptance covers: proposal editing, exact totals, immutable snapshots, revocation and one-page/28-page chromium pdf output. Container restart and clean-volume backup/restore were also checked. See the [validation record](artifacts/validation.json) for the exact evidence and remaining acceptance gates.
+
+Bug reports should include reproduction steps and browser/runtime versions, with private keys and client data removed. Focused fixes and improvements are welcome through [issues](https://github.com/anshuman-pandey/proposal-lane/issues) and pull requests.
+
+## Documentation
+
+[Deployment & backups](docs/DEPLOYMENT.md) · [Print guide](docs/PRINT.md) · [Api guide](docs/API.md) · [Scope & comparison](docs/SCOPE.md) · [Validation evidence](artifacts/validation.json) · [License](LICENSE)
