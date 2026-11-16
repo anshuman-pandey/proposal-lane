@@ -2,3 +2,4 @@
 /* Long client names and unbroken identifiers must wrap on screen and paper. */
 .paper{overflow-wrap:anywhere;min-width:0}
 @media print{.totals{break-inside:avoid}.scope{orphans:3;widows:3}}
+.language-picker{display:flex;align-items:center;gap:8px;margin:0;font-size:11px}.language-picker select{width:auto;margin:0;padding:8px}header{flex-wrap:wrap}header .language-picker span{display:inline;margin:0;letter-spacing:0}@media(max-width:780px){.language-picker{width:100%;justify-content:flex-end}}

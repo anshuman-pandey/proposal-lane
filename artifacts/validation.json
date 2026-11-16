@@ -1,14 +1,15 @@
 {
-  "checked_at": "2026-11-16T04:38:07.416674+00:00",
-  "state": "local English browser preview",
-  "tests": "20 tests passed: 12 core and 8 HTTP integration checks",
+  "checked_at": "2026-11-16T05:39:16.983250+00:00",
+  "state": "local English/Spanish preview",
+  "tests": "21 core/API/catalog tests pass",
   "pending": [
-    "Six languages",
+    "German, Japanese, Simplified Chinese, Traditional Chinese",
     "Other browser print engines",
     "Public HTTPS and native review"
   ],
   "published": false,
   "browser": "Chromium create/edit, exact totals, safe text rendering, immutable client snapshot, revocation and 390px layout pass",
   "print": "Chromium one-page and 28-page stress PDF pass: 80 scope paragraphs and 100 items exactly once, correct total, no editor controls or blank pages, text within page bounds. Long-client overflow fixed; first page visually inspected.",
-  "deployment": "Local non-root read-only Docker: draft revisions, immutable snapshots and revoked access survive restart and clean-volume restore; fresh edits/shares and stale rejection pass. Private setup 0600 and overwrite refusal pass."
+  "deployment": "Local non-root read-only Docker: draft revisions, immutable snapshots and revoked access survive restart and clean-volume restore; fresh edits/shares and stale rejection pass. Private setup 0600 and overwrite refusal pass.",
+  "locales": "English original workflow and Spanish regional preference/persistence/blocked-storage/draft/content/totals/errors/mobile checks pass"
 }
