@@ -29,4 +29,4 @@ Proposal input: title, client, scope, currency, items (description, quantity and
 
 JSON requests are limited to 256 KiB. Invalid/stale input returns 400, denied credentials 401, wrong content type 415, oversized input 413, unavailable storage 503. All responses prohibit caching and framing. Shared snapshots stay unchanged after draft edits; create a new share to send revised terms. Revocation cannot erase prior copies. No signing, acceptance or payment is implemented.
 
-Verified using Flask's HTTP test client. Chromium owner/client workflow and a one-page print PDF pass. Six languages, complex multi-page printing and production persistence/recovery remain pending.
+Verified using Flask's HTTP test client. Chromium owner/client workflow and a one-page print PDF pass. Six languages, other browser print engines and production persistence/recovery remain pending.
