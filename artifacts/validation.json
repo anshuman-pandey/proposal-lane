@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-11-16T00:40:12.063626+00:00",
+  "state": "incomplete local core",
+  "tests": "12 unit tests passed",
+  "pending": [
+    "Authenticated API",
+    "Visual editor and client preview",
+    "Printable PDF",
+    "Six languages",
+    "Browser and deployment acceptance"
+  ],
+  "published": false
+}
