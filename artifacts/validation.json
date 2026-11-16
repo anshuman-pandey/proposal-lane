@@ -1,15 +1,15 @@
 {
-  "checked_at": "2026-11-16T05:39:16.983250+00:00",
-  "state": "local English/Spanish preview",
+  "checked_at": "2026-11-16T06:40:03.661453+00:00",
+  "state": "local six-language preview",
   "tests": "21 core/API/catalog tests pass",
   "pending": [
-    "German, Japanese, Simplified Chinese, Traditional Chinese",
     "Other browser print engines",
-    "Public HTTPS and native review"
+    "Public HTTPS and native review",
+    "Owner naming/publication approval"
   ],
   "published": false,
   "browser": "Chromium create/edit, exact totals, safe text rendering, immutable client snapshot, revocation and 390px layout pass",
   "print": "Chromium one-page and 28-page stress PDF pass: 80 scope paragraphs and 100 items exactly once, correct total, no editor controls or blank pages, text within page bounds. Long-client overflow fixed; first page visually inspected.",
   "deployment": "Local non-root read-only Docker: draft revisions, immutable snapshots and revoked access survive restart and clean-volume restore; fresh edits/shares and stale rejection pass. Private setup 0600 and overwrite refusal pass.",
-  "locales": "English original workflow and Spanish regional preference/persistence/blocked-storage/draft/content/totals/errors/mobile checks pass"
+  "locales": "Six locales pass Chromium preference/Chinese variants/persistence/blocked-storage/drafts/literal content/totals/errors/mobile. Visual inspection caught hidden mobile lock label; selector narrowed and visibility regression check added."
 }

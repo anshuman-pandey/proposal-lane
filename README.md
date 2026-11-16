@@ -2,7 +2,7 @@
 
 **An open-source alternative for Better Proposals workflows, in preparation.**
 
-Local English/Spanish browser preview with a proposal editor, immutable client snapshots and browser Print / Save PDF. Six languages and public HTTPS acceptance remain; no public release or deployment.
+Local six-language browser preview with a proposal editor, immutable client snapshots and browser Print / Save PDF. Native-speaker review and public HTTPS acceptance remain; no public release or deployment.
 
 ![Actual proposal editor and estimate preview](docs/assets/workspace.png)
 
@@ -12,7 +12,7 @@ Amounts accept plain decimal strings. Each line is rounded half-up to cents; the
 
 Owner library methods require authentication; the included `server.py` supplies that boundary. Share keys confer read access; they do not establish identity, consent, signature or payment. Revocation cannot erase copies already downloaded. The development API binds to localhost only.
 
-Next: finish German, Japanese, Simplified Chinese and Traditional Chinese. English and Spanish now pass browser language checks. Local persistent deployment and backup recovery pass.
+English, German, Spanish, Japanese, Simplified Chinese and Traditional Chinese now pass browser language checks. Local persistent deployment and backup recovery pass.
 
 [Scope and primary references](docs/SCOPE.md) · [MIT license](LICENSE)
 
@@ -24,4 +24,4 @@ Chromium acceptance covers exact totals, literal rendering of HTML-like text, im
 
 [Persistent hosting and backup recovery](docs/DEPLOYMENT.md) provides private setup, non-root Docker and a localhost Compose service. Local container acceptance verifies draft revisions, immutable snapshots and revoked links across restart and clean-volume restoration, plus new edits and shares after recovery.
 
-Spanish language switching preserves draft inputs, proposal content and exact prices. Regional Spanish preferences, saved selection, blocked browser storage, translated errors and mobile layout are tested. The remaining four translations and native-speaker review are pending; this is not yet a six-language product.
+Language switching preserves drafts, proposal content and exact prices. Regional preferences, saved selection, blocked browser storage, translated errors and mobile layout are tested. Native-speaker review and public HTTPS remain pending. [Runnable preview and publication handoff](HANDOFF.md).

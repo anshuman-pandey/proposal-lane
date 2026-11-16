@@ -1,15 +1,15 @@
 /* Bundled interface localization. Never scans or translates user content. */
 (() => {
   'use strict';
-  const locales = ['en', 'es'];
-  const names = ['English', 'Español'];
+  const locales = ['en', 'de', 'es', 'ja', 'zh-CN', 'zh-TW'];
+  const names = ['English', 'Deutsch', 'Español', '日本語', '简体中文', '繁體中文'];
   const catalog = globalThis.APP_MESSAGES || {};
   const storageKey = 'interface-language-v1';
   const bindings = new Map();
   function resolve(preferences) {
     for (const raw of preferences || []) {
       const tag = String(raw).toLowerCase().replaceAll('_', '-');
-      if (/^zh(?:-|$)/.test(tag)) continue;
+      if (/^zh(?:-|$)/.test(tag)) return /(?:^|-)(tw|hk|mo|hant)(?:-|$)/.test(tag) ? 'zh-TW' : 'zh-CN';
       const base = tag.split('-')[0];
       if (locales.includes(base)) return base;
     }
