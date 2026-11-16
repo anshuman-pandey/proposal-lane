@@ -1,16 +1,10 @@
-# Proposal Lane · development core
+# Proposal Lane
 
 **An open-source alternative for Better Proposals workflows, in preparation.**
 
-Local authenticated API preview. The browser editor and printable PDF workflow are not implemented yet. This is not a usable product release.
+Local English browser preview with a proposal editor, immutable client snapshots and browser Print / Save PDF. Six languages and production recovery remain; no public release or deployment.
 
-```mermaid
-flowchart LR
-  A[Proposal line items] --> B[Exact decimal estimate]
-  B --> C[Immutable shared snapshot]
-  C --> D[Revoke access when needed]
-  B --> E[Edit a new revision]
-```
+![Actual proposal editor and estimate preview](docs/assets/workspace.png)
 
 Implemented: line items with fractional quantities, explicit currency, fixed discount, tax percentage, exact cents, optimistic revision checks, immutable shared snapshots and revocable hashed share credentials. Run `python3 -m unittest discover -s tests -v` with Python 3.12; install `requirements.txt` first to include the HTTP tests.
 
@@ -18,8 +12,12 @@ Amounts accept plain decimal strings. Each line is rounded half-up to cents; the
 
 Owner library methods require authentication; the included `server.py` supplies that boundary. Share keys confer read access; they do not establish identity, consent, signature or payment. Revocation cannot erase copies already downloaded. The development API binds to localhost only.
 
-Next: polished editor/client preview, safe print/PDF output, six interface languages, real browser acceptance and persistent deployment recovery.
+Next: six interface languages and persistent deployment recovery.
 
 [Scope and primary references](docs/SCOPE.md) · [MIT license](LICENSE)
 
 [Run the authenticated local API](docs/API.md). Twenty tests cover calculations, immutable snapshots, access boundaries, stale revisions, revocation and request limits.
+
+Start the local server using [API instructions](docs/API.md), then open http://127.0.0.1:8095. Save a proposal to preview its calculated totals. Create a client snapshot and copy its private link. Links pointing to localhost only work on the same computer; remote sharing requires an authorized HTTPS deployment. Use **Print / Save PDF** in the browser; turn off browser-added headers/footers when exporting. This is browser printing, not a server-generated PDF download.
+
+Chromium acceptance covers exact totals, literal rendering of HTML-like text, immutable snapshots after edits, revocation, narrow layout and a one-page PDF with the expected proposal text/totals and without editor controls. Complex multi-page layouts and other browser print engines still need acceptance.

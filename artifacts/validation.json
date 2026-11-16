@@ -1,12 +1,14 @@
 {
-  "checked_at": "2026-11-16T01:42:01.420541+00:00",
-  "state": "incomplete local API preview",
+  "checked_at": "2026-11-16T02:37:01.834366+00:00",
+  "state": "local English browser preview",
   "tests": "20 tests passed: 12 core and 8 HTTP integration checks",
   "pending": [
-    "Visual editor and client preview",
-    "Printable PDF",
     "Six languages",
-    "Browser and deployment acceptance"
+    "Production persistence/recovery",
+    "Multi-page PDF and cross-browser print acceptance",
+    "Public HTTPS"
   ],
-  "published": false
+  "published": false,
+  "browser": "Chromium create/edit, exact totals, safe text rendering, immutable client snapshot, revocation and 390px layout pass",
+  "print": "Chromium one-page PDF extracted text verifies title, items and total, without editor controls; multi-page and other print engines pending"
 }

@@ -6,7 +6,7 @@ from estimates import Proposals,Invalid,calculate
 
 def create_app(path,owner_key):
     if not isinstance(owner_key,str) or not owner_key.isascii() or len(owner_key)<32:raise ValueError('Set PROPOSAL_OWNER_KEY to at least 32 random ASCII characters.')
-    app=Flask(__name__,static_folder=None);app.config['MAX_CONTENT_LENGTH']=262144
+    app=Flask(__name__);app.config['MAX_CONTENT_LENGTH']=262144
     def db():
         if 'db' not in g:g.db=Proposals(path)
         return g.db
@@ -24,13 +24,15 @@ def create_app(path,owner_key):
         if store:store.close()
     @app.after_request
     def headers(r):
-        r.headers.update({'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'none'; frame-ancestors 'none'; base-uri 'none'"});return r
+        r.headers.update({'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"});return r
     @app.errorhandler(Invalid)
     def invalid(e):return jsonify(error=str(e)),400
     @app.errorhandler(HTTPException)
     def http_error(e):return jsonify(error=e.description),e.code
     @app.errorhandler(sqlite3.OperationalError)
     def unavailable(e):return jsonify(error='Storage unavailable. Please retry.'),503
+    @app.get('/')
+    def home():return app.send_static_file('index.html')
     @app.get('/api/proposals')
     def listing():
         owner();return jsonify([dict(id=r['id'],revision=r['revision']) for r in db().db.execute('SELECT id,revision FROM proposals ORDER BY rowid DESC')])
