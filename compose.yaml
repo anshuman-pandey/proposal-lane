@@ -1,0 +1,19 @@
+services:
+  proposal-lane:
+    build: .
+    environment:
+      PROPOSAL_OWNER_KEY: ${PROPOSAL_OWNER_KEY:?Set a random owner key in .env}
+    ports:
+      - "127.0.0.1:8095:8095"
+    volumes:
+      - proposal-data:/data
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+volumes:
+  proposal-data:
