@@ -11,5 +11,28 @@
   "browser": "Chromium create/edit, exact totals, safe text rendering, immutable client snapshot, revocation and 390px layout pass",
   "print": "Chromium one-page and 28-page stress PDF pass: 80 scope paragraphs and 100 items exactly once, correct total, no editor controls or blank pages, text within page bounds. Long-client overflow fixed; first page visually inspected.",
   "deployment": "Local non-root read-only Docker: draft revisions, immutable snapshots and revoked access survive restart and clean-volume restore; fresh edits/shares and stale rejection pass. Private setup 0600 and overwrite refusal pass.",
-  "locales": "Six locales pass Chromium preference/Chinese variants/persistence/blocked-storage/drafts/literal content/totals/errors/mobile. Visual inspection caught hidden mobile lock label; selector narrowed and visibility regression check added."
+  "locales": "Six locales pass Chromium preference/Chinese variants/persistence/blocked-storage/drafts/literal content/totals/errors/mobile. Visual inspection caught hidden mobile lock label; selector narrowed and visibility regression check added.",
+  "current_audit": {
+    "checked_at": "2026-11-26T13:36:59.571702+00:00",
+    "source_head": "9d1dc7a6afff9cba81fc3c27a8adc4e6a7daf773",
+    "source_publication": "https://github.com/anshuman-pandey/proposal-lane",
+    "source_public": true,
+    "ci": {
+      "conclusion": "success",
+      "headSha": "9d1dc7a6afff9cba81fc3c27a8adc4e6a7daf773",
+      "status": "completed",
+      "url": "https://github.com/anshuman-pandey/proposal-lane/actions/runs/43975930110"
+    },
+    "local_core_check": {
+      "exit": 0,
+      "summary": "----------------------------------------------------------------------\nRan 21 tests in 0.252s\n\nOK\n"
+    },
+    "release_urls": [],
+    "hosted_demo_url": null,
+    "remaining_gates": [
+      "Other browser print engines",
+      "Public HTTPS and native review"
+    ],
+    "note": "Historical validation below is retained as dated evidence. Source publication does not establish a hosted deployment."
+  }
 }
